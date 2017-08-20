@@ -71,8 +71,10 @@
 {
   var a = "A";
   var c = "AC";
-  var processed = c;  // correct this!
+  var processed = a;  // correct this!
   
+    // ????????
+    
   check(a, "A");
   check(c, "AC");
   isEqual(false,  c > processed);
@@ -93,16 +95,27 @@
 {
   var a = "oooxoo";
   var c = "ooxooo";
+    
+    a=a.split('');
+    a[2]='x';
+    a[3]='o';
+    a=a.join('');
+  
+
   // change a, use the arrays' index access
-  var a = new Array ("ooxooo");
   check(c, "ooxooo");
   isEqual(c, a);
 }
 // 10
 {
   var c = "ABABABA";
-  // var c = new Array ("AB   BA")
-  var c = c.replace("ABABABA","AB   BA");
+    
+    c = c.split('');
+    c[2] = " ";
+    c[3] = " ";
+    c[4] = " ";
+    c = c.join('');
+    
   // change c, use the arrays' index access
   isEqual(c, "AB   BA");
 }
@@ -118,8 +131,7 @@
 {
   var c = 1;
   var a = "1";
-  a = Number(a);
-  var processed = c + a;  // correct this! check js Number Object
+  var processed = +c + +a;  // correct this! check js Number Object
   
   check(c, 1);
   check(a, "1");
@@ -128,10 +140,8 @@
 // 13
 {
   var c = 1;
-    c = c.toString();
   var a = 1;
-    a = a.toString();
-  var processed = c + a;  // correct this!
+  var processed = '' + c + a;  // correct this!
   
   check(c, 1);
   check(a, 1);
@@ -141,8 +151,8 @@
 {
   var c = 2;
   var a = 2;
-  var processed = c + a;  // correct this!
-  processed = processed.toString();
+  var processed = '' + a + c;  // correct this!
+
   check(c, 2);
   check(a, 2);
   isEqual('string', typeof processed);
@@ -175,9 +185,12 @@
 {
   var c = "itclub";
   var b = "lub"; 
-  
+  b = "c" + b;
+  console.log(b);  // to test it -> "club" or not
+    //???????
+      
   check(c, 'itclub');
-  isEqual(2, b.indexOf("b"));
+  isEqual(2, c.indexOf(b));
 }
 // 20
 {
@@ -192,8 +205,7 @@
 {
   var c = "itclub";
   var processed = c.split(""); // correct this! ?????
-    
-   processed = processed[0] + "-" + processed[1] + "-" + processed[2] + "-" + processed[3] + "-" + processed[4] + "-" + "b";
+    processed = processed.join("-");
     
   check(c, 'itclub');
   isEqual(processed, "i-t-c-l-u-b");
